@@ -1,7 +1,8 @@
 from fastapi import APIRouter
 
-router=APIRouter()
+# creamos una instancia
+router = APIRouter()
 
-@router.get("/, tags="Home")
+@router.get(path="/", tags=["Home"])
 def home():
-    return {"mensage":"Ecomerce API FenCoders Madrid P5"}
+    return {"message":"Bienvenidos a Clínica Veterinaria"}
