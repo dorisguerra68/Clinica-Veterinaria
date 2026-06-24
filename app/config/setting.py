@@ -24,7 +24,7 @@ class Settings(BaseSettings):
 
     @property
     def database_url(self) -> str:
-        return (f"postgresql://{self.db_user}:{self.db_password}"
+        return (f"postgresql+psycopg://{self.db_user}:{self.db_password}"
                 F"@{self.db_host}:{self.db_port}/{self.db_name}")
 
 # lA STRING QUE CONSTRUYE LA FUNCIÓN
