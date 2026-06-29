@@ -1,7 +1,7 @@
 
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.models.base import Base
+from app.database.db_connection import Base
 
 class Razas(Base):
     __tablename__ = "razas"

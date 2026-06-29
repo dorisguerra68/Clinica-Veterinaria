@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models.raza_models import RazaModel
+from app.schemas.raza_schema import RazaModel
 from app.schema_validator.raza_validator import RazaCreateValidator
 
 class RazaController:

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.schemas.raza import RazaSchema
+from app.models.razas_models import Razas
 
 
 # aquí va la logica del negocio las líneas 1 y 2
@@ -11,7 +11,7 @@ class RazaModel:
           db: Session,
           raza_nombre:str
   ):
-    nueva_raza = RazaSchema(
+    nueva_raza = Razas(
         raza=raza_nombre
 
     )
