@@ -1,8 +1,9 @@
-from sqlalchemy import String,ForeignKey
+from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.database.db_connection import Base
+from app.schemas.mascotas import MascotasSchema
 
-class Propietarios(Base):
+class PropietariosSchema(Base):
     __tablename__ = "propietarios"
 
     id_propietario: Mapped[int] = mapped_column(primary_key=True, index=True)
@@ -13,4 +14,4 @@ class Propietarios(Base):
     id_mascota: Mapped[int] = mapped_column(ForeignKey("mascotas.id_mascota"), nullable=False)
 
     #relación de muchas mascotas a un solo propietario (inversa)
-    mascotas: Mapped[list["Mascotas"]] = relationship(back_populates="propietarios")
+    mascotas: Mapped["list[MascotasSchema]"] = relationship(back_populates="propietarios")
