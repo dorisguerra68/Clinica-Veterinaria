@@ -20,10 +20,7 @@ class Mascotas(Base):
         ForeignKey("razas.id_raza"),
         nullable=False
     )
-    #id_historia_clinica: Mapped[int] = mapped_column(
-     #   ForeignKey("historias_clinicas.id"),
-      #  nullable=True
-   # )
+
     nombre: Mapped[str] = mapped_column(String(100), nullable=False)
     especie: Mapped[str] = mapped_column(String(50), nullable=False)
     fecha_nacimiento: Mapped[date] = mapped_column(Date, nullable=False)
@@ -37,14 +34,11 @@ class Mascotas(Base):
         back_populates="mascotas"
     )
 
+    historia_clinica: Mapped["HistoriasClinicas"] = relationship(
+        back_populates="mascota",
+        uselist=False,
 
-
-    #historia_clinica: Mapped["HistoriasClinicas"] = relationship(
-      #  back_populates="mascota",
-       # uselist=False,
-        #foreign_keys=[id_historia_clinica],
-        #cascade="all, delete-orphan"
-    #)
+    )
     #citas: Mapped[list["Citas"]] = relationship(back_populates="mascota", cascade="all, delete-orphan")
     #mascota_tratamientos: Mapped[list["MascotaTratamientos"]] = relationship(
        # back_populates="mascota",
