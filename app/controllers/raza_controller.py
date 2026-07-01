@@ -13,6 +13,10 @@ def create_raza(db: Session, raza_data: RazaCreate):
 def obtener_raza(db: Session, id_raza: int):
     return db.query(Razas).filter(Razas.id_raza == id_raza).first()
 
+def obtener_razas(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Razas).offset(skip).limit(limit).all()
+
+
 def actualizar_raza(db: Session, id_raza: int, raza_data: RazaUpdate):
     raza = db.query(Razas).filter(Razas.id_raza == id_raza).first()
     if raza:
