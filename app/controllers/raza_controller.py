@@ -1,14 +1,29 @@
 from sqlalchemy.orm import Session
-from app.schemas.raza_schema import RazaModel
-from app.schema_validator.raza_validator import RazaCreateValidator
+from app.models.razas_models import Razas
+from app.schemas.raza_schema import RazaCreate, RazaUpdate
 
-class RazaController:
 
-    @staticmethod
-    def create_raza(db: Session, especie_data: RazaCreateValidator):
-        # Tomamos el texto limpio (.raza) que el usuario envió en el validador
-        # y se lo pasamos al parámetro 'especie_nombre' que espera el modelo
-        return RazaModel.create(
-            db=db,
-            raza_nombre=raza_data.raza
-        )
+def create_raza(db: Session, raza_data: RazaCreate):
+    nueva = Razas(nombre_raza=raza_data.nombre_raza)
+    db.add(nueva)
+    db.commit()
+    db.refresh(nueva)
+    return nueva
+
+def obtener_raza(db: Session, id_raza: int):
+    return db.query(Razas).filter(Razas.id_raza == id_raza).first()
+
+def actualizar_raza(db: Session, id_raza: int, raza_data: RazaUpdate):
+    raza = db.query(Razas).filter(Razas.id_raza == id_raza).first()
+    if raza:
+        raza.nombre_raza = raza_data.nombre_raza
+        db.commit()
+        db.refresh(raza)
+    return raza
+
+def eliminar_raza(db: Session, id_raza: int):
+    raza = db.query(Razas).filter(Razas.id_raza == id_raza).first()
+    if raza:
+        db.delete(raza)
+        db.commit()
+    return {"mensaje": "Raza eliminada correctamente"}
