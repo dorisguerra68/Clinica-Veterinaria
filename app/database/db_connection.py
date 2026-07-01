@@ -19,7 +19,7 @@ class Base(DeclarativeBase):
     pass
 
 # 1º que arranque sección local
-def get_db(self):
+def get_db():
     db = SessionLocal() #abrimos la bd
     try:
         yield db #mantiene un estado, pausa la ejecución (llamado inyección de dependencia)
