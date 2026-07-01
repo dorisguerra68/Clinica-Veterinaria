@@ -3,14 +3,14 @@ from datetime import datetime
 from sqlalchemy import func
 from sqlalchemy import String, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from app.models.base import Base
+from app.database.db_connection import Base
 
 class HistoriasClinicas(Base):
     __tablename__ = "historias_clinicas"
 
-    id: Mapped[int] = mapped_column(primary_key=True, index=True)
+    id_historia: Mapped[int] = mapped_column(primary_key=True, index=True)
     id_mascota: Mapped[int] = mapped_column(
-        ForeignKey("mascotas.id"),
+        ForeignKey("Mascotas.id_mascota"),
         nullable=False,
         unique=True
     )
