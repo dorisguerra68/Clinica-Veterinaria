@@ -16,7 +16,7 @@ from app.routers.router_home import router as home_router
 from app.routers.router_raza import router as raza_router
 from app.routers.router_propietarios import router as propietarios_router
 from app.routers.router_mascota import router as mascota_router
-
+from app.routers.router_historia_clinica import router as historia_router
 # configurar FASTAPI
 app = FastAPI(
     title=settings.app_title,
@@ -29,6 +29,7 @@ app.include_router(home_router)
 app.include_router(raza_router, prefix="/razas", tags=["Razas"])
 app.include_router(propietarios_router)
 app.include_router(mascota_router)
+app.include_router(historia_router)
 
 # 6. enpoint de ejemplo
 @app.get("/health-db", tags=["health"])
