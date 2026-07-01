@@ -10,6 +10,6 @@ class RazaUpdate(RazaBase):
     pass
 
 class RazaResponse(RazaBase):
-    id: int
+    id_raza: int
 
     model_config = ConfigDict(from_attributes=True)
