@@ -1,22 +1,15 @@
-from sqlalchemy.orm import Session
-from app.models.razas_models import Razas
+from pydantic import BaseModel, ConfigDict
 
+class RazaBase(BaseModel):
+    nombre_raza: str
 
-# aquí va la logica del negocio las líneas 1 y 2
+class RazaCreate(RazaBase):
+    pass
 
-class RazaModel:
-  #nos va crea bd
-  @staticmethod
-  def create(
-          db: Session,
-          raza_nombre:str
-  ):
-    nueva_raza = Razas(
-        raza=raza_nombre
+class RazaUpdate(RazaBase):
+    pass
 
-    )
-    #créame está especie (categoría)
-    db.add(nueva_raza)
-    db.commit()
-    db.refresh(nueva_raza)
-    return nueva_raza
+class RazaResponse(RazaBase):
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)
